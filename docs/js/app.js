@@ -47,11 +47,17 @@
         "message": {
           "contentType": "application/json",
           "payload": {
-            "type": "integer",
-            "enum": [
-              1
+            "type": "object",
+            "required": [
+              "value"
             ],
-            "description": "Valor fijo que indica activar la alarma (1 = encender).",
+            "properties": {
+              "value": {
+                "type": "boolean",
+                "description": "Valor boleano para dar la señal.",
+                "x-parser-schema-id": "<anonymous-schema-5>"
+              }
+            },
             "x-parser-schema-id": "<anonymous-schema-4>"
           },
           "x-parser-message-name": "<anonymous-message-2>"
@@ -65,12 +71,18 @@
         "message": {
           "contentType": "application/json",
           "payload": {
-            "type": "integer",
-            "enum": [
-              1
+            "type": "object",
+            "required": [
+              "value"
             ],
-            "description": "Valor fijo que indica tomar una foto (1 = tomar).",
-            "x-parser-schema-id": "<anonymous-schema-5>"
+            "properties": {
+              "value": {
+                "type": "boolean",
+                "description": "Valor boleano para dar la señal.",
+                "x-parser-schema-id": "<anonymous-schema-7>"
+              }
+            },
+            "x-parser-schema-id": "<anonymous-schema-6>"
           },
           "x-parser-message-name": "<anonymous-message-3>"
         }
@@ -92,7 +104,7 @@
               "id_cajon": {
                 "type": "string",
                 "description": "Identificador único del cajón cuyo estado se desea cambiar.",
-                "x-parser-schema-id": "<anonymous-schema-7>"
+                "x-parser-schema-id": "<anonymous-schema-9>"
               },
               "estado": {
                 "type": "string",
@@ -103,10 +115,10 @@
                   "maintense"
                 ],
                 "description": "Nuevo estado asignado al cajón.",
-                "x-parser-schema-id": "<anonymous-schema-8>"
+                "x-parser-schema-id": "<anonymous-schema-10>"
               }
             },
-            "x-parser-schema-id": "<anonymous-schema-6>"
+            "x-parser-schema-id": "<anonymous-schema-8>"
           },
           "x-parser-message-name": "<anonymous-message-4>"
         }
