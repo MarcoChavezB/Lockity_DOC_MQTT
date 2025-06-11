@@ -32,6 +32,55 @@ channels:
               enum: [1]
               description: Valor fijo que indica la acción de abrir el cajón (1 = abrir).
 
+  '{ubicacion}/{id_locker}/comand/fingerprint':
+    publish:
+      summary: Comunicación de huella digital (inicio y respuesta)
+      description: >
+        Este tópico se utiliza tanto para iniciar la configuración de la huella desde el dispositivo móvil, 
+        como para que el firmware embebido responda con las etapas del proceso.
+        Se usa un único tópico para ambos tipos de mensajes, que se diferencian por su estructura.
+
+        - El cliente móvil envía `config: 1` y `user_id` para iniciar.
+        - El dispositivo embebido responde con `stage`, `status`, `message`.
+
+      message:
+        contentType: application/json
+        payload:
+          oneOf:
+            - type: object
+              title: Mensaje de inicio (desde móvil)
+              required:
+                - config
+                - user_id
+              properties:
+                config:
+                  type: integer
+                  enum: [1]
+                  description: Indica el inicio del proceso de registro de huella.
+                user_id:
+                  type: string
+                  description: Identificador único del usuario.
+
+            - type: object
+              title: Mensaje de respuesta (desde embebido)
+              required:
+                - stage
+                - status
+                - message
+              properties:
+                stage:
+                  type: string
+                  enum: [put, remove, confirm]
+                  description: Etapa del proceso de configuración.
+                status:
+                  type: string
+                  enum: [waiting, success, fail]
+                  description: Estado de la etapa.
+                message:
+                  type: string
+                  description: Instrucción o mensaje de estado.
+
+
   '{ubicacion}/{id_locker}/comand/alarm':
     subscribe:
       summary: Comando para activar la alarma del cajón

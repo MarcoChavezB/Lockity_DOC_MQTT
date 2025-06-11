@@ -40,6 +40,82 @@
         }
       }
     },
+    "{ubicacion}/{id_locker}/comand/fingerprint": {
+      "publish": {
+        "summary": "Comunicación de huella digital (inicio y respuesta)",
+        "description": "Este tópico se utiliza tanto para iniciar la configuración de la huella desde el dispositivo móvil,  como para que el firmware embebido responda con las etapas del proceso. Se usa un único tópico para ambos tipos de mensajes, que se diferencian por su estructura.\n- El cliente móvil envía `config: 1` y `user_id` para iniciar. - El dispositivo embebido responde con `stage`, `status`, `message`.\n",
+        "message": {
+          "contentType": "application/json",
+          "payload": {
+            "oneOf": [
+              {
+                "type": "object",
+                "title": "Mensaje de inicio (desde móvil)",
+                "required": [
+                  "config",
+                  "user_id"
+                ],
+                "properties": {
+                  "config": {
+                    "type": "integer",
+                    "enum": [
+                      1
+                    ],
+                    "description": "Indica el inicio del proceso de registro de huella.",
+                    "x-parser-schema-id": "<anonymous-schema-6>"
+                  },
+                  "user_id": {
+                    "type": "string",
+                    "description": "Identificador único del usuario.",
+                    "x-parser-schema-id": "<anonymous-schema-7>"
+                  }
+                },
+                "x-parser-schema-id": "<anonymous-schema-5>"
+              },
+              {
+                "type": "object",
+                "title": "Mensaje de respuesta (desde embebido)",
+                "required": [
+                  "stage",
+                  "status",
+                  "message"
+                ],
+                "properties": {
+                  "stage": {
+                    "type": "string",
+                    "enum": [
+                      "put",
+                      "remove",
+                      "confirm"
+                    ],
+                    "description": "Etapa del proceso de configuración.",
+                    "x-parser-schema-id": "<anonymous-schema-9>"
+                  },
+                  "status": {
+                    "type": "string",
+                    "enum": [
+                      "waiting",
+                      "success",
+                      "fail"
+                    ],
+                    "description": "Estado de la etapa.",
+                    "x-parser-schema-id": "<anonymous-schema-10>"
+                  },
+                  "message": {
+                    "type": "string",
+                    "description": "Instrucción o mensaje de estado.",
+                    "x-parser-schema-id": "<anonymous-schema-11>"
+                  }
+                },
+                "x-parser-schema-id": "<anonymous-schema-8>"
+              }
+            ],
+            "x-parser-schema-id": "<anonymous-schema-4>"
+          },
+          "x-parser-message-name": "<anonymous-message-2>"
+        }
+      }
+    },
     "{ubicacion}/{id_locker}/comand/alarm": {
       "subscribe": {
         "summary": "Comando para activar la alarma del cajón",
@@ -55,12 +131,12 @@
               "value": {
                 "type": "boolean",
                 "description": "Valor boleano para dar la señal.",
-                "x-parser-schema-id": "<anonymous-schema-5>"
+                "x-parser-schema-id": "<anonymous-schema-13>"
               }
             },
-            "x-parser-schema-id": "<anonymous-schema-4>"
+            "x-parser-schema-id": "<anonymous-schema-12>"
           },
-          "x-parser-message-name": "<anonymous-message-2>"
+          "x-parser-message-name": "<anonymous-message-3>"
         }
       }
     },
@@ -79,12 +155,12 @@
               "value": {
                 "type": "boolean",
                 "description": "Valor boleano para dar la señal.",
-                "x-parser-schema-id": "<anonymous-schema-7>"
+                "x-parser-schema-id": "<anonymous-schema-15>"
               }
             },
-            "x-parser-schema-id": "<anonymous-schema-6>"
+            "x-parser-schema-id": "<anonymous-schema-14>"
           },
-          "x-parser-message-name": "<anonymous-message-3>"
+          "x-parser-message-name": "<anonymous-message-4>"
         }
       }
     },
@@ -104,7 +180,7 @@
               "id_cajon": {
                 "type": "string",
                 "description": "Identificador único del cajón cuyo estado se desea cambiar.",
-                "x-parser-schema-id": "<anonymous-schema-9>"
+                "x-parser-schema-id": "<anonymous-schema-17>"
               },
               "estado": {
                 "type": "string",
@@ -115,12 +191,12 @@
                   "maintense"
                 ],
                 "description": "Nuevo estado asignado al cajón.",
-                "x-parser-schema-id": "<anonymous-schema-10>"
+                "x-parser-schema-id": "<anonymous-schema-18>"
               }
             },
-            "x-parser-schema-id": "<anonymous-schema-8>"
+            "x-parser-schema-id": "<anonymous-schema-16>"
           },
-          "x-parser-message-name": "<anonymous-message-4>"
+          "x-parser-message-name": "<anonymous-message-5>"
         }
       }
     }
