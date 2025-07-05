@@ -8,6 +8,23 @@ info:
     Funciones disponibles: abrir cajón, encender alarma, tomar foto, cambiar estado.
 
 channels:
+  '{ubicacion}/{id_locker}/command/config':
+    subscribe:
+      summary: Topic para configurar el locker 
+      description: >
+        Topic para mandar la senal para que el locker realize la peticon de configuracion para el usuario
+      message:
+        contentType: application/json
+        payload:
+          type: object
+          required:
+            - value
+          properties:
+            value:
+              type: integer
+              enum: [1]
+              description: Valor fijo para dar la senal de request
+
   '{ubicacion}/{id_locker}/comand/toggle':
     subscribe:
       summary: Comando para abrir el cajón
