@@ -8,8 +8,8 @@ info:
     Funciones disponibles: abrir cajón, encender alarma, tomar foto, cambiar estado.
 
 channels:
-  '{ubicacion}/{id_locker}/command/config':
-    subscribe:
+  '{serial_number}/command/config':
+    publish:
       summary: Topic para configurar el locker 
       description: >
         Topic para mandar la senal para que el locker realize la peticon de configuracion para el usuario
@@ -25,8 +25,8 @@ channels:
               enum: [1]
               description: Valor fijo para dar la senal de request
 
-  '{ubicacion}/{id_locker}/comand/toggle':
-    subscribe:
+  '{serial_number}/comand/toggle':
+    publish:
       summary: Comando para abrir el cajón
       description: >
         Este tópico recibe mensajes para abrir un cajón específico. 
@@ -49,7 +49,7 @@ channels:
               enum: [1]
               description: Valor fijo que indica la acción de abrir el cajón (1 = abrir).
 
-  '{ubicacion}/{id_locker}/comand/fingerprint':
+  '{serial_number}/comand/fingerprint':
     publish:
       summary: Comunicación de huella digital (inicio y respuesta)
       description: >
@@ -98,8 +98,8 @@ channels:
                   description: Instrucción o mensaje de estado.
 
 
-  '{ubicacion}/{id_locker}/comand/alarm':
-    subscribe:
+  '{serial_number}/comand/alarm':
+    publish:
       summary: Comando para activar la alarma del cajón
       description: >
         Este tópico se utiliza para encender la alarma del cajón en caso de situaciones de seguridad o emergencia.
@@ -116,8 +116,8 @@ channels:
               type: boolean
               description: Valor boleano para dar la señal.
 
-  '{ubicacion}/{id_locker}/comand/picture':
-    subscribe:
+  '{serial_number}/comand/picture':
+    publish:
       summary: Comando para tomar una foto
       description: >
         En este tópico se reciben comandos para activar la cámara integrada y tomar una fotografía del cajón o su entorno.
@@ -134,8 +134,8 @@ channels:
               type: boolean
               description: Valor boleano para dar la señal.
 
-  '{ubicacion}/{id_locker}/comand/change':
-    subscribe:
+  '{serial_number}/comand/change':
+    publish:
       summary: Comando para cambiar el estado del cajón
       description: >
         Este tópico recibe mensajes para modificar el estado operativo del cajón.
@@ -157,3 +157,28 @@ channels:
               type: string
               enum: [open, closed, error, maintense]
               description: Nuevo estado asignado al cajón.
+
+  '{serial_number}/action/change':
+    subscribe:
+      summary: Avisa la accion de estado de un cajon
+      description: >
+        Topic ideal para realizar las notificaciones push para avisar al usuario si se abrio su cajon
+      message:
+        contentType: application/json
+        payload:
+          type: object
+          required:
+            - id_drawer
+            - id_user
+            - status
+          properties:
+            id_drawer:
+              type: string
+              description: Identificador único del cajón cuyo estado cambio.
+            id_user:
+              type: string
+              description: usuario al que pertenece el cajon.
+            status:
+              type: string
+              enum: [open, closed]
+              description: Estado actual del cajon.
