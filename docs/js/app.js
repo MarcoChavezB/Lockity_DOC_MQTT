@@ -34,7 +34,7 @@
         }
       }
     },
-    "{serial_number}/comand/toggle": {
+    "{serial_number}/command/toggle": {
       "publish": {
         "summary": "Comando para abrir el cajón",
         "description": "Este tópico recibe mensajes para abrir un cajón específico.  El mensaje debe contener el ID del usuario que realiza la solicitud y un valor fijo '1' que indica la acción de apertura. No requiere parámetros adicionales en el tópico. Ejemplo de uso: un usuario autorizado envía un comando para desbloquear y abrir el cajón.\n",
@@ -67,7 +67,7 @@
         }
       }
     },
-    "{serial_number}/comand/fingerprint": {
+    "{serial_number}/command/fingerprint": {
       "publish": {
         "summary": "Comunicación de huella digital (inicio y respuesta)",
         "description": "Este tópico se utiliza tanto para iniciar la configuración de la huella desde el dispositivo móvil,  como para que el firmware embebido responda con las etapas del proceso. Se usa un único tópico para ambos tipos de mensajes, que se diferencian por su estructura.\n- El cliente móvil envía `config: 1` y `user_id` para iniciar. - El dispositivo embebido responde con `stage`, `status`, `message`.\n",
@@ -143,7 +143,7 @@
         }
       }
     },
-    "{serial_number}/comand/alarm": {
+    "{serial_number}/command/alarm": {
       "publish": {
         "summary": "Comando para activar la alarma del cajón",
         "description": "Este tópico se utiliza para encender la alarma del cajón en caso de situaciones de seguridad o emergencia. El mensaje solo requiere un valor fijo '1' que indica activar la alarma. No se requieren parámetros adicionales ni en el tópico ni en el payload.\n",
@@ -167,7 +167,7 @@
         }
       }
     },
-    "{serial_number}/comand/picture": {
+    "{serial_number}/command/picture": {
       "publish": {
         "summary": "Comando para tomar una foto",
         "description": "En este tópico se reciben comandos para activar la cámara integrada y tomar una fotografía del cajón o su entorno. El payload es un valor fijo '1' que activa la acción. Esta función puede utilizarse para auditoría o control visual remoto.\n",
@@ -191,7 +191,7 @@
         }
       }
     },
-    "{serial_number}/comand/change": {
+    "{serial_number}/command/change": {
       "publish": {
         "summary": "Comando para cambiar el estado del cajón",
         "description": "Este tópico recibe mensajes para modificar el estado operativo del cajón. El mensaje debe incluir el identificador del cajón y el nuevo estado, que puede ser uno de: 'open' (abierto), 'closed' (cerrado), 'error' (error), o 'maintense' (en mantenimiento). No se usan parámetros adicionales en el tópico.\n",
