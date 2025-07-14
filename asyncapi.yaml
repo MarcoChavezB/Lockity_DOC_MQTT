@@ -39,14 +39,18 @@ channels:
           type: object
           required:
             - id_usuario
+            - id_drawer
             - valor
           properties:
             id_usuario:
               type: string
               description: Identificador único del usuario que solicita abrir el cajón.
+            id_drawer:
+              type: string
+              description: Numero de compartimiento que se desea abrir.
             valor:
               type: integer
-              enum: [1]
+              enum: [1, 0]
               description: Valor fijo que indica la acción de abrir el cajón (1 = abrir).
 
   '{serial_number}/command/fingerprint':

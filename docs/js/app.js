@@ -44,6 +44,7 @@
             "type": "object",
             "required": [
               "id_usuario",
+              "id_drawer",
               "valor"
             ],
             "properties": {
@@ -52,13 +53,19 @@
                 "description": "Identificador único del usuario que solicita abrir el cajón.",
                 "x-parser-schema-id": "<anonymous-schema-4>"
               },
+              "id_drawer": {
+                "type": "string",
+                "description": "Numero de compartimiento que se desea abrir.",
+                "x-parser-schema-id": "<anonymous-schema-5>"
+              },
               "valor": {
                 "type": "integer",
                 "enum": [
-                  1
+                  1,
+                  0
                 ],
                 "description": "Valor fijo que indica la acción de abrir el cajón (1 = abrir).",
-                "x-parser-schema-id": "<anonymous-schema-5>"
+                "x-parser-schema-id": "<anonymous-schema-6>"
               }
             },
             "x-parser-schema-id": "<anonymous-schema-3>"
@@ -89,15 +96,15 @@
                       1
                     ],
                     "description": "Indica el inicio del proceso de registro de huella.",
-                    "x-parser-schema-id": "<anonymous-schema-8>"
+                    "x-parser-schema-id": "<anonymous-schema-9>"
                   },
                   "user_id": {
                     "type": "string",
                     "description": "Identificador único del usuario.",
-                    "x-parser-schema-id": "<anonymous-schema-9>"
+                    "x-parser-schema-id": "<anonymous-schema-10>"
                   }
                 },
-                "x-parser-schema-id": "<anonymous-schema-7>"
+                "x-parser-schema-id": "<anonymous-schema-8>"
               },
               {
                 "type": "object",
@@ -116,7 +123,7 @@
                       "confirm"
                     ],
                     "description": "Etapa del proceso de configuración.",
-                    "x-parser-schema-id": "<anonymous-schema-11>"
+                    "x-parser-schema-id": "<anonymous-schema-12>"
                   },
                   "status": {
                     "type": "string",
@@ -126,18 +133,18 @@
                       "fail"
                     ],
                     "description": "Estado de la etapa.",
-                    "x-parser-schema-id": "<anonymous-schema-12>"
+                    "x-parser-schema-id": "<anonymous-schema-13>"
                   },
                   "message": {
                     "type": "string",
                     "description": "Instrucción o mensaje de estado.",
-                    "x-parser-schema-id": "<anonymous-schema-13>"
+                    "x-parser-schema-id": "<anonymous-schema-14>"
                   }
                 },
-                "x-parser-schema-id": "<anonymous-schema-10>"
+                "x-parser-schema-id": "<anonymous-schema-11>"
               }
             ],
-            "x-parser-schema-id": "<anonymous-schema-6>"
+            "x-parser-schema-id": "<anonymous-schema-7>"
           },
           "x-parser-message-name": "<anonymous-message-3>"
         }
@@ -158,10 +165,10 @@
               "value": {
                 "type": "boolean",
                 "description": "Valor boleano para dar la señal.",
-                "x-parser-schema-id": "<anonymous-schema-15>"
+                "x-parser-schema-id": "<anonymous-schema-16>"
               }
             },
-            "x-parser-schema-id": "<anonymous-schema-14>"
+            "x-parser-schema-id": "<anonymous-schema-15>"
           },
           "x-parser-message-name": "<anonymous-message-4>"
         }
@@ -182,10 +189,10 @@
               "value": {
                 "type": "boolean",
                 "description": "Valor boleano para dar la señal.",
-                "x-parser-schema-id": "<anonymous-schema-17>"
+                "x-parser-schema-id": "<anonymous-schema-18>"
               }
             },
-            "x-parser-schema-id": "<anonymous-schema-16>"
+            "x-parser-schema-id": "<anonymous-schema-17>"
           },
           "x-parser-message-name": "<anonymous-message-5>"
         }
@@ -207,7 +214,7 @@
               "id_cajon": {
                 "type": "string",
                 "description": "Identificador único del cajón cuyo estado se desea cambiar.",
-                "x-parser-schema-id": "<anonymous-schema-19>"
+                "x-parser-schema-id": "<anonymous-schema-20>"
               },
               "estado": {
                 "type": "string",
@@ -218,10 +225,10 @@
                   "maintense"
                 ],
                 "description": "Nuevo estado asignado al cajón.",
-                "x-parser-schema-id": "<anonymous-schema-20>"
+                "x-parser-schema-id": "<anonymous-schema-21>"
               }
             },
-            "x-parser-schema-id": "<anonymous-schema-18>"
+            "x-parser-schema-id": "<anonymous-schema-19>"
           },
           "x-parser-message-name": "<anonymous-message-6>"
         }
@@ -244,12 +251,12 @@
               "id_drawer": {
                 "type": "string",
                 "description": "Identificador único del cajón cuyo estado cambio.",
-                "x-parser-schema-id": "<anonymous-schema-22>"
+                "x-parser-schema-id": "<anonymous-schema-23>"
               },
               "id_user": {
                 "type": "string",
                 "description": "usuario al que pertenece el cajon.",
-                "x-parser-schema-id": "<anonymous-schema-23>"
+                "x-parser-schema-id": "<anonymous-schema-24>"
               },
               "status": {
                 "type": "string",
@@ -258,10 +265,10 @@
                   "closed"
                 ],
                 "description": "Estado actual del cajon.",
-                "x-parser-schema-id": "<anonymous-schema-24>"
+                "x-parser-schema-id": "<anonymous-schema-25>"
               }
             },
-            "x-parser-schema-id": "<anonymous-schema-21>"
+            "x-parser-schema-id": "<anonymous-schema-22>"
           },
           "x-parser-message-name": "<anonymous-message-7>"
         }
